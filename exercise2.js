@@ -7,6 +7,29 @@
 
 
 // YOUR CODE HERE
+function Device(brand) {
+  this._brand = brand
+}
+
+Device.prototype.powerOn = function() {
+  console.log(`${this._brand} device is now powered on.`)
+}
+
+Device.prototype.getBrand = function() {
+  return this._brand
+}
+
+function Smartphone(brand, model) {
+  Device.call(this, brand)
+  this._model = model
+}
+
+Smartphone.prototype = Object.create(Device.prototype)
+Smartphone.prototype.constructor = Smartphone
+
+Smartphone.prototype.call = function() {
+  console.log(`Calling from ${Device.prototype.getBrand.call(this)} ${this._model}...`)
+}
 
 
 
